@@ -1,0 +1,107 @@
+Building configuration...
+
+Current configuration : 1616 bytes
+!
+version 17.6.3
+service timestamps log datetime msec
+service timestamps debug datetime msec
+no service password-encryption
+!
+hostname DHCP
+!
+!
+!
+!
+ip dhcp excluded-address 192.168.10.1 192.168.10.10
+ip dhcp excluded-address 192.168.20.1 192.168.20.10
+ip dhcp excluded-address 192.168.30.1 192.168.30.10
+ip dhcp excluded-address 192.168.40.1 192.168.40.10
+ip dhcp excluded-address 192.168.50.1 192.168.50.10
+ip dhcp excluded-address 192.168.50.0 192.168.50.10
+ip dhcp excluded-address 192.168.20.0 192.168.20.10
+!
+ip dhcp pool Admin
+ network 192.168.10.0 255.255.255.0
+ default-router 192.168.10.254
+ dns-server 192.168.10.10
+ip dhcp pool Accounts
+ network 192.168.30.0 255.255.255.0
+ default-router 192.168.30.254
+ dns-server 192.168.10.10
+ip dhcp pool HR
+ network 192.168.40.0 255.255.255.0
+ default-router 192.168.40.254
+ dns-server 192.168.40.10
+ip dhcp pool IT
+ network 192.168.50.0 255.255.255.0
+ default-router 192.168.50.254
+ dns-server 192.168.10.10
+ip dhcp pool Guest
+ network 192.168.20.0 255.255.255.0
+ default-router 192.168.20.254
+ dns-server 192.168.10.10
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0/0
+ ip address 192.168.10.10 255.255.255.0
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/0/1
+ no ip address
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/0/2
+ no ip address
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/0/3
+ no ip address
+ duplex auto
+ speed auto
+!
+ip classless
+ip route 0.0.0.0 0.0.0.0 192.168.10.254 
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+line con 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end

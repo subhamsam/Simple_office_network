@@ -1,0 +1,24 @@
+Troubleshooting Problems:
+
+1.ONLY DEVICES THAT ARE IN VLAN 10 IS ABLE TO GET THERE IP ADDRESSES AUTOMATICALLY FROM DHCP SERVER
+
+
+SOLVE: as other devices are in different subnets we have to add an ip helper address command in the default gateway of all the vlans
+
+still the problem persists so i check that the dhcp request are reaching to  the dhcp server but its dropping it 
+
+the problem was that the router had no default route to its gateway 
+
+so i create a route to its default gateway and it solved my problem...
+
+
+
+
+2.NO DEVICE IS ABLE TO PING VLAN20?
+
+
+SOLVE:first i checked if devices can ping other vlan, they can .so from this i understand that there is nothing wrong ip subnet and vlan configs 
+then i checked ACL1 rules and find the culprit 
+so creat an new extended ACL2 which is more precise and configure it int g0/0/1.20 outbound 
+
+than again i try to ping vlan 20 and its working .
